@@ -4,7 +4,7 @@ import { Link, Route, Switch } from 'react-router-dom'
 import Form from './Form'
 import { useState } from 'react'
 
-  const initialOrders = [] ;
+  
 const initialFormValues = {
     /////NAME/////
     Name: '',
@@ -35,8 +35,10 @@ const initialFormErrors = {
     Sauce:'',
     SpecialInstructions:'',
 }
-function App() {
+const initialOrders = [] 
 const initialDisabled = true;
+function App() {
+
 const [order, setOrder] = useState(initialOrders)
 const [formValues, setFormValues] = useState(initialFormValues)
 const [formErrors, setFormErrors] = useState(initialFormErrors)
@@ -70,10 +72,13 @@ const formSubmit = () => {
       </button>
     </div>
     
-<Route exact path="/pizza" render={props =>{
+<Route exact path="/pizza">
     <Form 
-  {...props}/>
-  }}/>
+  values={formValues}
+  submit={formSubmit}
+  disabled={disabled}
+  errors={formErrors}/>
+  </Route>
     </div>
   );  
 };
